@@ -13,7 +13,8 @@ A modern, clean, and user-friendly expense management system built with Laravel,
 - Admin can add funds or adjust balances
 - Wallets can go negative
 - Automatic deduction on expense creation
-- Complete transaction history
+- Complete transaction history with filtering
+- Wallet transaction history page for both admin and employees
 
 ### Expense Management
 - Add expenses with category, amount, description, and date
@@ -36,9 +37,11 @@ A modern, clean, and user-friendly expense management system built with Laravel,
 - Spending by category (with interactive charts)
 - Admin dashboard with organization-wide statistics
 - Employee dashboard with personal spending analytics
+- User detail pages with comprehensive reports
 - Export reports as CSV
 
 ### Additional Features
+- Detailed user profile pages with wallet and expense analytics
 - Email-ready notifications (for low balance alerts)
 - Responsive design (mobile-friendly)
 - Real-time UI updates with Livewire
@@ -135,15 +138,19 @@ A modern, clean, and user-friendly expense management system built with Laravel,
 ### For Admins
 
 1. **Dashboard**: View all employee wallets, total spending, and analytics
-2. **Categories**: Manage expense categories (CRUD operations)
-3. **Wallet Management**: Add funds or adjust employee wallet balances
+2. **Users**: Manage users and view detailed user profiles
+3. **Wallets**: Manage wallet balances and add funds
+4. **Wallet History**: View all wallet transactions across users
+5. **Reports**: View user expense reports with filtering
+6. **Categories**: Manage expense categories (CRUD operations)
 
 ### For Employees
 
 1. **Dashboard**: View wallet balance, recent expenses, and spending charts
 2. **My Expenses**: View all expenses with advanced filtering and search
 3. **Add Expense**: Create new expenses (automatically deducts from wallet)
-4. **Export**: Download expense reports as CSV
+4. **Wallet History**: View personal wallet transaction history
+5. **Export**: Download expense reports as CSV
 
 ## Project Structure
 
@@ -154,11 +161,15 @@ app/
 │   │   ├── Admin/
 │   │   │   ├── Dashboard.php         # Admin dashboard
 │   │   │   ├── Categories.php        # Category management
-│   │   │   └── WalletManagement.php  # Wallet operations
+│   │   │   ├── UserDetail.php        # Detailed user profile
+│   │   │   ├── WalletHistory.php     # All wallet transactions
+│   │   │   ├── WalletManagement.php  # Wallet operations
+│   │   │   └── UserExpenseReport.php # User expense reports
 │   │   └── Employee/
 │   │       ├── Dashboard.php         # Employee dashboard
 │   │       ├── Expenses.php          # Expense list with filters
-│   │       └── AddExpense.php        # Add new expense
+│   │       ├── AddExpense.php        # Add new expense
+│   │       └── TopupHistory.php      # Wallet transaction history
 │   └── Middleware/
 │       └── AdminMiddleware.php       # Admin role protection
 ├── Models/
@@ -200,6 +211,14 @@ Every wallet operation creates a transaction record:
 - Expense deductions
 - Balance adjustments
 - Maintains balance history
+
+### User Detail Pages
+Comprehensive user profile pages showing:
+- Basic user information
+- Current wallet balance
+- Wallet transaction statistics
+- Expense summary with category breakdown
+- Recent wallet transactions
 
 ## Extending the System
 
